@@ -62,13 +62,13 @@ const FriendCardComponent = props => {
           x
         </Remove>
         <HeaderContent key={Date.now() + getRandomInt(1000, 25000)}>
-          {props.friend}
+          {props.smurf}
         </HeaderContent>
         <ParagraphContent key={Date.now() + getRandomInt(1000, 25000)}>
           {props.age}
         </ParagraphContent>
         <ParagraphContent key={Date.now() + getRandomInt(1000, 25000)}>
-          {props.email}
+          {props.height}
         </ParagraphContent>
       </FriendCard>
     </Container>

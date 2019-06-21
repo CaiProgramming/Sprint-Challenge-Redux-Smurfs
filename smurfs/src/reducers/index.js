@@ -47,13 +47,12 @@ const initialState = {
   isloadingDELETE: false,
   successDELTE: false,
   isloadingLOGIN: false,
-  successLOGIN: false,
-  user: ""
+  successLOGIN: false
 };
 export default (state = initialState, action) => {
   switch (action.type) {
     //GET
-    case FETCHINGSMURF:
+    case GETSMURF:
       return {
         ...state,
         SMURF: [],
@@ -128,7 +127,7 @@ export default (state = initialState, action) => {
     case REMOVESUCCESS:
       return {
         ...state,
-        SMURF: state.SMURF.map(friend => {
+        SMURF: state.SMURF.map(smurf => {
           if (smurf.id !== action.payload) {
             return smurf;
           }

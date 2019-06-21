@@ -47,7 +47,7 @@ class SmurfForm extends React.Component {
   state = {
     name: "",
     age: "",
-    email: ""
+    height: ""
   };
   textHandler = e => {
     this.setState({
@@ -58,7 +58,7 @@ class SmurfForm extends React.Component {
     let Smurf = {
       name: this.state.name,
       age: this.state.age,
-      email: this.state.email
+      height: this.state.height
     };
     this.props.addSmurfs(Smurf);
   };
@@ -99,9 +99,9 @@ class SmurfForm extends React.Component {
           <div>
             <Input
               type="text"
-              id="email"
-              placeholder="Email"
-              value={this.state.email}
+              id="height"
+              placeholder="height"
+              value={this.state.height}
               onChange={this.textHandler}
             />
           </div>

@@ -4,7 +4,7 @@
 */
 const axios = require("axios");
 //GET
-export const GETSMURF = "FETCHINGSMURF";
+export const GETSMURF = "GETSMURF";
 export const GETSUCCESS = "GETSUCCESS";
 export const GETFAILURE = "GETFAILURE";
 //POST
@@ -35,14 +35,10 @@ export const LOGINFAILURE = "LOGINFAILURE";
    U - updateSmurf
    D - deleteSmurf
 */
-export const makeSmurf = user => dispatch => {
-  dispatch({ type: FETCHINGSmurf });
+export const makeSmurfs = () => dispatch => {
+  dispatch({ type: GETSMURF });
   axios
-    .get("/Smurf", {
-      headers: {
-        authorization: getUser().token
-      }
-    })
+    .get("/smurfs")
     .then(res => {
       dispatch({ type: GETSUCCESS, payload: res.data });
     })
@@ -53,22 +49,15 @@ export const makeSmurf = user => dispatch => {
       });
     });
 };
-export const addSmurf = FRIEND => dispatch => {
-  dispatch({ type: ADDSmurf });
+export const addSmurfs = SMURF => dispatch => {
+  dispatch({ type: ADDSMURF });
+  console.log(SMURF);
   axios
-    .post(
-      "/smurf",
-      {
-        name: FRIEND.name,
-        age: FRIEND.age,
-        email: FRIEND.email
-      },
-      {
-        headers: {
-          authorization: getUser().token
-        }
-      }
-    )
+    .post("/smurfs", {
+      name: SMURF.name,
+      age: SMURF.age,
+      height: SMURF.height
+    })
     .then(res => {
       dispatch({ type: ADDSUCCESS, payload: res.data });
     })
@@ -79,22 +68,14 @@ export const addSmurf = FRIEND => dispatch => {
       });
     });
 };
-export const editSmurf = (FRIEND, id) => dispatch => {
-  dispatch({ type: EDITSmurf });
+export const editSmurfs = (SMURF, id) => dispatch => {
+  dispatch({ type: EDITSMURF });
   axios
-    .put(
-      `/smurf/${FRIEND.id}`,
-      {
-        name: FRIEND.name,
-        age: FRIEND.age,
-        email: FRIEND.email
-      },
-      {
-        headers: {
-          authorization: getUser().token
-        }
-      }
-    )
+    .put(`/smurfs/${SMURF.id}`, {
+      name: SMURF.name,
+      age: SMURF.age,
+      height: SMURF.height
+    })
     .then(res => {
       dispatch({ type: EDITSUCCESS, payload: res.data });
     })
@@ -105,14 +86,10 @@ export const editSmurf = (FRIEND, id) => dispatch => {
       });
     });
 };
-export const removeSmurf = (id, user) => dispatch => {
+export const removeSmurfs = (id, user) => dispatch => {
   dispatch({ type: REMOVEFETCH });
   axios
-    .delete(`/smurf/${id}`, {
-      headers: {
-        authorization: getUser().token
-      }
-    })
+    .delete(`/smurfs/${id}`)
     .then(res => {
       dispatch({ type: REMOVESUCCESS, payload: res.data });
     })

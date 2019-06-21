@@ -48,7 +48,7 @@ class SmurfForm extends React.Component {
     Smurf: {
       name: "",
       age: "",
-      email: "",
+      height: "",
       id: ""
     }
   };
@@ -66,8 +66,8 @@ class SmurfForm extends React.Component {
     this.props.makeSmurfs();
   };
   optionsHandler = () => {
-    if (this.props.Smurfs) {
-      return this.props.Smurfs.map(Smurf => {
+    if (this.props.SMURFS) {
+      return this.props.SMURFS.map(Smurf => {
         return (
           <option id={Smurf.id} value={Smurf.id}>
             {Smurf.name}
@@ -77,7 +77,7 @@ class SmurfForm extends React.Component {
     }
   };
   handleChange = event => {
-    let Smurf = this.props.Smurfs.filter(
+    let Smurf = this.props.SMURFS.filter(
       Smurf => Smurf.id == event.target.value
     );
     if (Smurf[0]) {
@@ -85,7 +85,7 @@ class SmurfForm extends React.Component {
         Smurf: {
           name: Smurf[0].name,
           age: Smurf[0].age,
-          email: Smurf[0].email,
+          height: Smurf[0].height,
           id: Smurf[0].id
         }
       });
@@ -106,12 +106,14 @@ class SmurfForm extends React.Component {
         </Container>
       );
     }
-    console.log(this.state.Smurf.age);
     return (
       <Card>
         <h2>Update your Smurfs</h2>
         <div>
-          <select onChange={this.handleChange}>{this.optionsHandler()}</select>
+          <select onChange={this.handleChange}>
+            <option />
+            {this.optionsHandler()}
+          </select>
         </div>
         <div>
           <Input
@@ -134,9 +136,9 @@ class SmurfForm extends React.Component {
         <div>
           <Input
             type="text"
-            id="email"
-            placeholder="Email"
-            value={this.state.Smurf.email}
+            id="height"
+            placeholder="height"
+            value={this.state.Smurf.height}
             onChange={this.textHandler}
           />
         </div>
@@ -147,8 +149,9 @@ class SmurfForm extends React.Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state.SMURFS);
   return {
-    Smurfs: state.Smurfs,
+    SMURFS: state.SMURF,
     isloadingGET: state.isloadingGET,
     successGET: state.successGET,
     isloadingPOST: state.isloadingPOST,

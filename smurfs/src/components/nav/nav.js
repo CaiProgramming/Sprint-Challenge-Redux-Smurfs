@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { withRouter } from "react-router-dom";
-import { logout } from "../withAuth/services";
 const Nav = styled.div`
   display: flex;
   width: 100%;
@@ -29,15 +28,6 @@ class NavComponent extends React.Component {
         <Page onClick={() => this.clickHandler("/home")}>Home</Page>
         <Page onClick={() => this.clickHandler("/form")}>Add Friends</Page>
         <Page onClick={() => this.clickHandler("/update")}>Edit Friends</Page>
-        <Page
-          onClick={() =>
-            logout(callback => {
-              this.clickHandler("/login");
-            })
-          }
-        >
-          Logout
-        </Page>
       </Nav>
     );
   }

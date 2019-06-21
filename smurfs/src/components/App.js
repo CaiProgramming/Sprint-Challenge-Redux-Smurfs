@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./App.css";
 import Smurf from "./smurfs/SmurfCard";
 import styled from "styled-components";
 import { connect } from "react-redux";
@@ -17,15 +18,15 @@ class App extends Component {
   };
   smurfHandler = () => {
     if (this.props.SMURF) {
-      return this.props.SMURF.map(Smurf => {
+      return this.props.SMURF.map(smurf => {
         let date = Date.now();
         return (
           <Smurf
             key={date + this.getRandomInt(1000, 25000)}
-            id={Smurf.id}
-            smurf={Smurf.name}
-            age={Smurf.age}
-            email={Smurf.email}
+            id={smurf.id}
+            smurf={smurf.name}
+            age={smurf.age}
+            height={smurf.height}
             cb={this.cbRemoveSmurf}
           />
         );
@@ -43,19 +44,6 @@ class App extends Component {
     );
   }
 }
-const mapStateToProps = state => {
-  console.log(state);
-  return {
-    Smurfs: state.Smurfs,
-    user: state.user,
-    isloadingGET: state.isloadingGET,
-    successGET: state.successGET,
-    isloadingPOST: state.isloadingPOST,
-    successPUT: state.successPUT,
-    isloadingDELETE: state.isloadingDELETE,
-    successDELTE: state.successDELTE
-  };
-};
 
 const mapStateToProps = state => {
   console.log(state);
